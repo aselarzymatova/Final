@@ -6,7 +6,6 @@ from PIL import Image, ImageTk
 import os
 
 
-
 class PyPhotoEditor:
     def __init__(self):
         self.root = Tk()
@@ -44,23 +43,38 @@ class PyPhotoEditor:
         transform_menu = Menu(edit_menu, tearoff=0)
 
         rotate_menu = Menu(transform_menu, tearoff=0)
-        rotate_menu.add_command(label="Rotate left by 90", command=lambda: self.rotate_current_image(90))
-        rotate_menu.add_command(label="Rotate right by 90", command=lambda: self.rotate_current_image(-90))
-        rotate_menu.add_command(label="Rotate left by 180", command=lambda: self.rotate_current_image(180))
-        rotate_menu.add_command(label="Rotate right by 180", command=lambda: self.rotate_current_image(-180))
+        rotate_menu.add_command(label="Rotate left by 90",
+                                command=lambda: self.rotate_current_image(90))
+        rotate_menu.add_command(label="Rotate right by 90",
+                                command=lambda: self.rotate_current_image(-90))
+        rotate_menu.add_command(label="Rotate left by 180",
+                                command=lambda: self.rotate_current_image(180))
+        rotate_menu.add_command(label="Rotate right by 180",
+                                command=lambda: self.rotate_current_image
+                                (-180))
         transform_menu.add_cascade(label="Rotate", menu=rotate_menu)
 
         convert_menu = Menu(edit_menu, tearoff=0)
-        convert_menu.add_command(label="Black and white", command=lambda: self.convert_current_image("1"))
-        convert_menu.add_command(label="RGBA", command=lambda: self.convert_current_image("RGBA"))
+        convert_menu.add_command(label="Black and white",
+                                 command=lambda: self.convert_current_image
+                                 ("1"))
+        convert_menu.add_command(label="RGBA",
+                                 command=lambda: self.convert_current_image
+                                 ("RGBA"))
 
         resize_menu = Menu(edit_menu, tearoff=0)
-        resize_menu.add_command(label="25% of original size", command=lambda: self.resize_current_image(25))
-        resize_menu.add_command(label="50% of original size", command=lambda: self.resize_current_image(50))
-        resize_menu.add_command(label="75% of original size", command=lambda: self.resize_current_image(75))
-        resize_menu.add_command(label="125% of original size", command=lambda: self.resize_current_image(125))
-        resize_menu.add_command(label="150% of original size", command=lambda: self.resize_current_image(150))
-        resize_menu.add_command(label="200% of original size", command=lambda: self.resize_current_image(200))
+        resize_menu.add_command(label="25% of original size",
+                                command=lambda: self.resize_current_image(25))
+        resize_menu.add_command(label="50% of original size",
+                                command=lambda: self.resize_current_image(50))
+        resize_menu.add_command(label="75% of original size",
+                                command=lambda: self.resize_current_image(75))
+        resize_menu.add_command(label="125% of original size",
+                                command=lambda: self.resize_current_image(125))
+        resize_menu.add_command(label="150% of original size",
+                                command=lambda: self.resize_current_image(150))
+        resize_menu.add_command(label="200% of original size",
+                                command=lambda: self.resize_current_image(200))
 
         edit_menu.add_cascade(label="Transform", menu=transform_menu)
         edit_menu.add_cascade(label="Resize", menu=resize_menu)
@@ -73,7 +87,8 @@ class PyPhotoEditor:
         self.image_tabs.pack(fill="both", expand=1)
 
     def open_new_images(self):
-        image_paths = fd.askopenfilenames(filetypes=(("Images", "*.jpeg;*.jpg;*.png"),))
+        image_paths = fd.askopenfilenames(filetypes=(("Images",
+                                          "*.jpeg;*.jpg;*.png"),))
         for image_path in image_paths:
             self.add_new_image(image_path)
 
@@ -124,7 +139,8 @@ class PyPhotoEditor:
         if '*' in old_ext:
             old_ext = old_ext[:-1]
 
-        new_path = fd.asksaveasfilename(initialdir=old_path, filetypes=(("Images", "*.jpeg;*.jpg;*.png"),))
+        new_path = fd.asksaveasfilename(initialdir=old_path, filetypes=((
+                                        "Images", "*.jpeg;*.jpg;*.png"),))
         if not new_path:
             return
 
@@ -132,7 +148,9 @@ class PyPhotoEditor:
         if not new_ext:
             new_ext = old_ext
         elif old_ext != new_ext:
-            mb.showerror("Incorrect extension", f"Got incorrect extension: {new_ext}. Old was: {old_ext}")
+            mb.showerror("Incorrect extension",
+                         f"Got incorrect extension:
+                             {new_ext}. Old was: {old_ext}")
             return
 
         image.save(new_path + new_ext)
@@ -145,7 +163,8 @@ class PyPhotoEditor:
 
     def update_image_inside_app(self, current_tab, image):
         tab_number = self.image_tabs.index(current_tab)
-        tab_frame = self.image_tabs.children[current_tab[current_tab.rfind('!'):]]
+        tab_frame = self.image_tabs.children[current_tab
+                                             [current_tab.rfind('!'):]]
         label = tab_frame.children['!label']
 
         self.opened_images[tab_number][1] = image
@@ -168,7 +187,6 @@ class PyPhotoEditor:
 
         image = image.rotate(degrees)
         self.update_image_inside_app(current_tab, image)
-
 
     def resize_current_image(self, percents):
         current_tab, path, image = self.get_current_working_data()
