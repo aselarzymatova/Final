@@ -13,7 +13,8 @@ After you have pressed the open button, a file explorer appears where you can se
 Now let's try to select a black and white filter in the "edit" section and change the photo (in addition to this you can rotate and resize)
 ![photo_2022-05-28_13-47-56](https://user-images.githubusercontent.com/106343921/170816271-9b4f8720-7736-4274-987f-a0cbb9e20e8f.jpg)
 
-
+The next step is to rotate the photo in any direction at your request
 ![photo_2022-05-28_13-47-58](https://user-images.githubusercontent.com/106343921/170816274-9b2f47e8-db5f-479e-9985-e8af7ce5a832.jpg)
-![photo_2022-05-28_13-48-01](https://user-images.githubusercontent.com/106343921/170816279-4b087934-100c-4e5a-b5e7-ebd1fde41f97.jpg)
+
+And at the end we will save
 ![photo_2022-05-28_13-48-04](https://user-images.githubusercontent.com/106343921/170816282-3f3a6c46-ce14-4674-a0f3-fae05ec384a9.jpg)
